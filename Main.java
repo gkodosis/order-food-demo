@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -5,6 +6,7 @@ import java.util.Scanner;
  * This class show-cases the functionality of our
  * java e-shop application
  * @author gkodosis
+ * @author kasthanos
  *
  */
 public class Main {
@@ -12,16 +14,16 @@ public class Main {
 	// load objects to test app's functionality
 	public static void loadObjects() {
 		// Registered Customer
-		RegisteredCustomer r1 = new RegisteredCustomer(1, "Achilleas Kontis", "6954324789", 
+		RegisteredCustomer r1 = new RegisteredCustomer("Achilleas Kontis", "6954324789",
 				"Tinou 2, Marousi", "ach@hotmail.com", "theo45");
 		// Visitor Customer
 		VisitorCustomer v1 = new VisitorCustomer("Iordanis Kaldis", "6987414598", "Artemis 36, Patisia");
 		// Product Examples
-		Product p1 = new Product(1, "Milk Fage 2%", 2.05);
+		Product p1 = new Product("Milk Fage 2%", 2.05);
 		// Shops
 		ArrayList<Product> shopsProducts = new ArrayList<Product>();
 		shopsProducts.add(p1);
-		Shop s1 = new Shop(1, "Fage", "Marti 3, Athens", "210-8976455", shopsProducts);
+		Shop s1 = new Shop("Fage", "Marti 3, Athens", "210-8976455", shopsProducts);
 		// Order Creation
 		ArrayList<Integer[][]> idQuantities = new ArrayList<Integer[][]>();
 		Integer[][] order1 = {{1,4}};
@@ -32,26 +34,27 @@ public class Main {
 	public static void mainMenu() {
 		System.out.println("** Welcome to our e-shop! Please select one of the above: **");
 		System.out.println();
+		System.out.println("--- MENU ---");
 		System.out.println("-- Register: Press 1");
 		System.out.println("-- Login: Press 2");
-		System.out.println("-- Continue as visitor: Press 3");	
+		System.out.println("-- Continue as visitor: Press 3");
 		System.out.println();
-		System.out.println("--> Choice: ");		
+		System.out.println("--> Choice: ");
 	}
 
 	public static void main(String[] args) {
 		// create global objects to access abstract methods
 		// Registered Customer
-		RegisteredCustomer r0 = new RegisteredCustomer(1, "Achilleas Kontis", "6954324789", 
+		RegisteredCustomer r0 = new RegisteredCustomer( "Achilleas Kontis", "6954324789",
 				"Tinou 2, Marousi", "ach@hotmail.com", "theo45");
 		// Visitor Customer
 		VisitorCustomer v0 = new VisitorCustomer("Iordanis Kaldis", "6987414598", "Artemis 36, Patisia");
 		// Product Examples
-		Product p0 = new Product(1, "Milk Fage 2%", 2.05);
+		Product p0 = new Product("Milk Fage 2%", 2.05);
 		// Shops
 		ArrayList<Product> shopsProducts = new ArrayList<Product>();
 		shopsProducts.add(p0);
-		Shop s0 = new Shop(1, "Fage", "Marti 3, Athens", "210-8976455", shopsProducts);
+		Shop s0 = new Shop("Fage", "Marti 3, Athens", "210-8976455", shopsProducts);
 		// Order Creation
 		ArrayList<Integer[][]> idQuantities = new ArrayList<Integer[][]>();
 		Integer[][] order0 = {{1,4}};
@@ -79,7 +82,7 @@ public class Main {
 				System.out.println("Password: ");
 				String password = input.next();
 
-				new RegisteredCustomer(r0.registeredCustomer.size() + 1, fullname, phoneNumber, 
+				new RegisteredCustomer( fullname, phoneNumber,
 						address, email, password);
 				mainMenu();
 				choice = input.nextInt();
@@ -93,7 +96,7 @@ public class Main {
 
 				if(RegisteredCustomer.logIn(email, password) != null) {
 					System.out.println(RegisteredCustomer.welcome(email, password) +
-							" you are now loged-in to our e-shop! ");
+							" You are now loged-in to our e-shop! ");
 					r0.getMenu();
 					choice = input.nextInt();
 				} else {
@@ -111,5 +114,7 @@ public class Main {
 			}
 		}
 	}
+
+}
 
 }
