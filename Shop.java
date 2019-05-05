@@ -6,22 +6,37 @@ import java.util.ArrayList;
  * our platform, including their characteristics 
  * and their unique products
  * @author gkodosis
+ * @author kasthanos
  * 
  */
 public class Shop {
 
-	private int count;
-	private int shopId;
-	private String brand;
-	private String address;
-	private String shopPhoneNumber;
-	ArrayList<Product> inhouseProducts  = new ArrayList<Product>();
-	static ArrayList<Shop> shops = new ArrayList<Shop>();
+	private int count; //count created objects
+	private int shopId; //shop's id
+	private String brand; //shop's brand
+	private String address; //shop's address
+	private String shopPhoneNumber; //shop's phone
+	ArrayList<Product> inhouseProducts  = new ArrayList<Product>(); //arraylist to store the Products
+	static ArrayList<Shop> shops = new ArrayList<Shop>(); //arraylist to store the Shops
 	
 	// create default constructor for non-static access
-	public Shop() {}
+	public Shop() {
+		
+	}
+	/**
+	* Full constructor
+	*
+	* @param brand
+	*        Shop's brand.
+	* @param address
+	*        Shop's address.
+	* @param shopPhoneNumber
+	*        Shop's phone.
+	* @param inhouseProducts
+	*        Shop's products.
+	*/
 
-	public Shop(int shopId, String brand, String address, String shopPhoneNumber, 
+	public Shop(String brand, String address, String shopPhoneNumber, 
 			ArrayList<Product> inhouseProducts) {
 		
 		this.brand = brand;
@@ -29,7 +44,7 @@ public class Shop {
 		this.setShopPhoneNumber(shopPhoneNumber);
 		this.inhouseProducts = inhouseProducts;
 		setShopId(count++);
-		shops.add(this);
+		shops.add(this); //add object to the arraylist
 	}
 	
 	public void setShopId(int shopId) {
