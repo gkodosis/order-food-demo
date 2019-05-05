@@ -1,3 +1,5 @@
+package Ergasia2019;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,8 +10,8 @@ import java.util.Scanner;
  *
  * @author gkodosis
  * @author kasthanos
- * 
- * 
+ *
+ *
  */
 public class RegisteredCustomer extends Customer {
 
@@ -18,7 +20,7 @@ public class RegisteredCustomer extends Customer {
 	private String email; //registeredcustomer's email
 	private String password; //registeredcustomer's password
 	static ArrayList<RegisteredCustomer> registeredCustomer = new ArrayList<RegisteredCustomer>(); //arraylist to store the RegisteredCustomers
-	
+
 	/**
 	 * Full constructor
 	 *
@@ -32,18 +34,17 @@ public class RegisteredCustomer extends Customer {
 	 *        RegisteredCustomer's email.
 	 * @param password
 	 *        RegisteredCustomer's password.
-
 	*/
 	public RegisteredCustomer(String fullname, String phoneNumber,
 			String address, String email, String password) {
-		
+
 		super(fullname, phoneNumber, address);
 		setRegCustomerId(count++); //assign the current value of the static variable count to the id
 		this.email = email;
 		this.password = password;
 		registeredCustomer.add(this); //add object to the arraylist
 	}
-	
+
 	/**
 	* Default constructor
 	*
@@ -52,27 +53,27 @@ public class RegisteredCustomer extends Customer {
 	public RegisteredCustomer(){
 
 	}
-	
+
 	public void setRegCustomerId(int regCustomerId) {
 		this.regCustomerId = regCustomerId;
 	}
-	
+
 	public int getRegCustomerId() {
 		return regCustomerId;
 	}
-	
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
@@ -89,23 +90,32 @@ public class RegisteredCustomer extends Customer {
 		// Gather user's choice
 		Scanner input = new Scanner(System.in);
 		int choice = input.nextInt();
-		Shop temp = new Shop();
+		Shop shop = new Shop();
 		// Flow based on user's choice
 		while(choice != 0) {
 			if(choice == 1) {
 				Order.printOrder();
 				getMenu();
-				
+
 			} else if(choice == 2) {
-				temp.filterAndPrintShops(input.next());
+
+				System.out.println("-- Please provide us with the part of brand: ");
+				System.out.println();
+				System.out.println("--> Choice: ");
+				String line = input.next();
+				if (line.length() > 0){
+					shop.filterAndPrintShops(line);
+				}else {
+					shop.printAllShops();
+				}
 				getMenu();
-				
+
 			} else if(choice == 3) {
-				
+
 			}
 		}
 	}
-	
+
 	// check if user is registered
 	public static RegisteredCustomer logIn(String email, String password) {
 		RegisteredCustomer customerFound = null;
@@ -117,8 +127,8 @@ public class RegisteredCustomer extends Customer {
 		}
 		return customerFound;
 	}
-	
-	// bring user's name, pointing at the specific 
+
+	// bring user's name, pointing at the specific
 	// credentials combination inserted
 	public static String welcome(String email, String password) {
 		String customerName = null;
@@ -130,7 +140,7 @@ public class RegisteredCustomer extends Customer {
 		}
 		return customerName;
 	}
-	
+
 	@Override
 	public String toString() {
 		return super.toString() + "ID: " + getRegCustomerId() + "\n" + "Email: " +
