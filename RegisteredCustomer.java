@@ -5,25 +5,52 @@ import java.util.Scanner;
  * This class describes the registered customers of our
  * application, in specific the ones who have successfully
  * registered and are able to login using their credentials
+ *
  * @author gkodosis
+ * @author kasthanos
+ * 
  * 
  */
 public class RegisteredCustomer extends Customer {
 
-	private int count;
-	private int regCustomerId;
-	private String email;
-	private String password;
-	static ArrayList<RegisteredCustomer> registeredCustomer = new ArrayList<RegisteredCustomer>();
+	private int count; //count created objects
+	private int regCustomerId; //registeredcustomer's id
+	private String email; //registeredcustomer's email
+	private String password; //registeredcustomer's password
+	static ArrayList<RegisteredCustomer> registeredCustomer = new ArrayList<RegisteredCustomer>(); //arraylist to store the RegisteredCustomers
 	
-	public RegisteredCustomer(int regCustomerId, String fullname, String phoneNumber,
+	/**
+	 * Full constructor
+	 *
+	 * @param fullname
+	 *        RegisteredCustomer's name.
+	 * @param phoneNumber
+	 *        RegisteredCustomer's phone.
+	 * @param address
+	 *        RegisteredCustomer's address.
+	 * @param email
+	 *        RegisteredCustomer's email.
+	 * @param password
+	 *        RegisteredCustomer's password.
+
+	*/
+	public RegisteredCustomer(String fullname, String phoneNumber,
 			String address, String email, String password) {
 		
 		super(fullname, phoneNumber, address);
-		setRegCustomerId(count++);
+		setRegCustomerId(count++); //assign the current value of the static variable count to the id
 		this.email = email;
 		this.password = password;
-		registeredCustomer.add(this);
+		registeredCustomer.add(this); //add object to the arraylist
+	}
+	
+	/**
+	* Default constructor
+	*
+	*/
+
+	public RegisteredCustomer(){
+
 	}
 	
 	public void setRegCustomerId(int regCustomerId) {
@@ -106,7 +133,7 @@ public class RegisteredCustomer extends Customer {
 	
 	@Override
 	public String toString() {
-		return super.toString() + " --Id: " + getRegCustomerId() + " --Email: " +
-				getEmail() + " --Password: " + getPassword();
+		return super.toString() + "ID: " + getRegCustomerId() + "\n" + "Email: " +
+				getEmail() + "\n" + "Password: " + getPassword();
 	}
 }
