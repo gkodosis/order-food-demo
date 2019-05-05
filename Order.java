@@ -7,21 +7,39 @@ import java.util.Date;
  * This class models the ordering process 
  * made from a customer 
  * @author gkodosis
- * 
+ * @author kasthanos
+ *
  */
 public class Order {
 
-	private int orderId;
-	private int count;
+	private int orderId; //order's id
+	private int count; //count created objects
 	private static Customer customer;
 	private Shop shop;
 	// maybe for loop for product id's
 	static ArrayList<Integer[][]> orders = new ArrayList<Integer[][]>();
-	private double totalOrderCost;
-	private String orderStamp;
+	private double totalOrderCost; //order's cost
+	private String orderStamp; //order's date
 
 	// gain access to non-static 
 	public Order() {}
+	
+	/**
+	* Full constructor
+	*
+	* @param customer
+	*        Customer's object.
+	* @param shop
+	*        Shop's object.
+	* @param shopPhoneNumber
+	*        Shop's phone.
+	* @param orders
+	*        Order's orders.
+	* @param totalOrderCost
+	*        Order's cost.
+	* @param orderStamp
+	*        Order's date.
+	*/
 	
 	public Order(Customer customer, Shop shop, ArrayList<Integer[][]> orders, 
 			double totalOrderCost, String orderStamp) {
