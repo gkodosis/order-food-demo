@@ -20,7 +20,7 @@ public abstract class Customer {
 	*
 	* @param fullname
 	*        Customer's fullname.
-	* @param phone
+	* @param phoneNumber
 	*        Customer's phoneNumber.
 	* @param address
 	*        Customer's address.
