@@ -49,6 +49,7 @@ public class Order {
 		this.customer = customer;
 		this.shop = shop;
 		this.orders = orders;
+		this.totalOrderCost = totalOrderCost;
 		setOrderId(count++);
 		setOrderStamp(orderStamp);
 		ord.add(this);
@@ -98,11 +99,14 @@ public class Order {
 
 	public String toString() {
 		// check the client's "if exists" case
-		return "Order's DateTime: " + getOrderStamp() + " Customer's Name: " +
-				getCustomerOrder().getCustomerName() + " Shop's Brand Name: " +
-				getShopOrder().getBrand() + " Order's List: " + " -- Product's Name: "
-				+ orders.get(getOrderId())[0] + " -- Ammount: x" + orders.get(getOrderId())[1]
-				+ " Order's Total Cost: " + getTotalOrderCost();
+		String print = "-- Order's DateTime: " + getOrderStamp() + "\n" + " Customer's Name: " +
+				getCustomerOrder().getCustomerName() + "\n" + " Shop's Brand Name: " +
+				getShopOrder().getBrand()+  "\n" + " Order's List: "+  "\n" ;
+		for(int i = 0; i < orders.size(); i++) {
+				print = print + " -- Product Id: " + orders.get(i)[i][0] + "\n" + " -- Ammount: x" + orders.get(i)[i][1] + "\n";
+		}
+				print = print + "-- Order's Total Cost: " + getTotalOrderCost() + "\n";
+				return print;
 	}
 
 	public static void printOrder() {

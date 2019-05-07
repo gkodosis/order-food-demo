@@ -91,6 +91,7 @@ public class RegisteredCustomer extends Customer {
 		Scanner input = new Scanner(System.in);
 		int choice = input.nextInt();
 		double totalcost = 0;
+		int count = 0;
 		Shop shop = new Shop();
 		Order order = new Order();
 		// Flow based on user's choice
@@ -133,12 +134,13 @@ public class RegisteredCustomer extends Customer {
 				}
 				shop.searchById(id).printCatalogue();
 				ArrayList<Integer[][]> idQuantities = new ArrayList<Integer[][]>();
+
 				System.out.println("-- Please provide us with the id of product: ");
 				System.out.println();
-				String s2 = input.next();
+				String s2 = input.next().trim();
 				int productid = Integer.parseInt(s2);
 				int amount;
-				while (s2.length() > 0) { //PROBLEM DON'TS ACCEPT ENTER KEY
+				while (!s2.isEmpty()) { //PROBLEM DON'TS ACCEPT ENTER KEY
 
 					if (shop.searchById(id).productIdExists(productid) == true) {
 						System.out.println("-- Please provide us with the amount of product: ");
@@ -174,7 +176,11 @@ public class RegisteredCustomer extends Customer {
 					}
 					Integer[][] order0 = {{productid, amount}};
 					idQuantities.add(order0);
-					totalcost = totalcost + shop.searchById(id).printProductPrice(productid);
+					count = count + 1;
+
+					if ((shop.searchById(id) != null) && (shop.searchById(id).productIdExists(productid) == true)) {
+						totalcost = totalcost + shop.searchById(id).searchProductPrice(productid) * amount;
+					}
 					System.out.println("-- Please provide us another id of product: ");
 					System.out.println();
 					s2 = input.next();
@@ -184,21 +190,26 @@ public class RegisteredCustomer extends Customer {
 				String pdata = "----------------------" + "\n"
 								+ "Your Order:" + "\n"
 								+ "----------------------" + "\n"
-								+ "Brand: " + shop.searchById(id).getBrand() + "\n";
+								+ "Brand: " + shop.searchById(id).getBrand() + "\n"
+								+ "----------------------" + "\n";
 				System.out.println(pdata);
-				for(int i = 0; i < idQuantities.get(0).size(); i ++) {
-				System.out.println("Products: " + idQuantities.get(i)[0] + "\n"
-								+ "Amounts: " + idQuantities.get(i)[1]);
+				for(int i = 0; i < count; i ++) {
+
+					System.out.println("Product Name: " + shop.searchById(id).searchProductName(idQuantities.get(i)[i][0]) + " ~~ Amount: " + idQuantities.get(i)[i][1]+ "\n" + "----------------------" + "\n");
 				}
+				System.out.println("Order's Total Cost : " + totalcost );
 				System.out.println();
 				System.out.println("-- Do you want to save your order? ");
 				System.out.println("-- Type N if you want ");
 				System.out.println();
-				String save = input.next();
-				if (save == "N") {
-					order.printOrder();
+				char save = input.next().trim().charAt(0);
+				if (save == 'N') {
+					Order or = new Order(this, shop.searchById(id), idQuantities, totalcost,"yyyy/MM/dd HH:mm:ss");
+					System.out.println(or.toString());
+				} else {
+					getMenu();
 				}
-				getMenu();
+			 getMenu();
 
 			}
 		}

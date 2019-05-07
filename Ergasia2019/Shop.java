@@ -102,6 +102,27 @@ public class Shop {
 		return inhouseProducts.get(idCheck).getPrice();
 	}
 
+	public String searchProductName(int idCheck) {
+		 String name = null;
+		for(int i = 0; i < inhouseProducts.size(); i++) {
+			if (idCheck == inhouseProducts.get(i).getProductId()){
+				name = inhouseProducts.get(i).getProductName();
+			}
+		}
+		return name;
+	}
+
+	// print product's price
+	public double searchProductPrice(int idCheck) {
+		double price = 0;
+		for(int i = 0; i < inhouseProducts.size(); i++) {
+			if (idCheck == inhouseProducts.get(i).getProductId()){
+				price = inhouseProducts.get(i).getPrice();
+			}
+		}
+		return price;
+	}
+
 	// print list of products (check the per shopId)
 	public void printCatalogue() {
 		for(int i = 0; i < inhouseProducts.size(); i++) {
