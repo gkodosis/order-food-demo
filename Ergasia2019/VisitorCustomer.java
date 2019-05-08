@@ -7,8 +7,10 @@ import java.util.ArrayList;
  * This class describes the visitor customers of,
  * meaning they decide to explore our platform
  * without using any credentials
+ * 
  * @author gkodosis
  * @author kasthanos
+ * 
  */
 public class VisitorCustomer extends Customer {
 	/**
@@ -29,24 +31,24 @@ public class VisitorCustomer extends Customer {
 	* Default constructor
 	*
 	*/
-
 	public VisitorCustomer(){
 
 	}
+	
 	@Override
 	public void getMenu() {
 		System.out.println("-- Browse Available Shops: Press 1");
 		System.out.println("-- Preview Shop's Products: Press 2");
 		System.out.println();
 		System.out.println("--> Choice: ");
-		// Gather user's choice
+		//Gather user's choice
 		Scanner input = new Scanner(System.in);
 		int choice = input.nextInt();
 		double totalcost = 0;
 		int count = 0;
 		Shop shop = new Shop();
 		Order order = new Order();
-		// Flow based on user's choice
+		//Flow based on user's choice
 		while(choice != 0) {
 			if(choice == 1) {
 				System.out.println("-- Please provide us with the part of brand: ");
@@ -101,7 +103,7 @@ public class VisitorCustomer extends Customer {
 							amount = input.nextInt();
 						}
 
-					}else {
+					} else {
 						while (shop.searchById(id).productIdExists(productid) != true){
 							System.out.println("-- Id doesn't exist! ");
 							System.out.println("-- Please provide us with a valid id of product: ");
@@ -173,4 +175,4 @@ public class VisitorCustomer extends Customer {
 
 		}
 	}
-}//End of class
+} //End of class

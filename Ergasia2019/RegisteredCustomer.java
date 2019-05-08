@@ -11,15 +11,15 @@ import java.util.Scanner;
  * @author gkodosis
  * @author kasthanos
  *
- *
  */
 public class RegisteredCustomer extends Customer {
 
 	private static int count; //count created objects
-	private int regCustomerId; //registeredcustomer's id
-	private String email; //registeredcustomer's email
-	private String password; //registeredcustomer's password
-	static ArrayList<RegisteredCustomer> registeredCustomer = new ArrayList<RegisteredCustomer>(); //arraylist to store the RegisteredCustomers
+	private int regCustomerId; //registered customer's id
+	private String email; //registered customer's email
+	private String password; //registered customer's password
+	//array list to store the Registered Customers
+	static ArrayList<RegisteredCustomer> registeredCustomer = new ArrayList<RegisteredCustomer>();
 
 	/**
 	 * Full constructor
@@ -39,17 +39,16 @@ public class RegisteredCustomer extends Customer {
 			String address, String email, String password) {
 
 		super(fullname, phoneNumber, address);
-		setRegCustomerId(count++); //assign the current value of the static variable count to the id
+		setRegCustomerId(count++); //assign the current value of the counter to the id
 		this.email = email;
 		this.password = password;
-		registeredCustomer.add(this); //add object to the arraylist
+		registeredCustomer.add(this); //add object to the array list
 	}
 
 	/**
 	* Default constructor
 	*
 	*/
-
 	public RegisteredCustomer(){
 
 	}
@@ -78,7 +77,7 @@ public class RegisteredCustomer extends Customer {
 		return password;
 	}
 
-	// register's customer menu
+	/* register's customer menu */
 	@Override
 	public void getMenu() {
 		System.out.println();
@@ -87,14 +86,14 @@ public class RegisteredCustomer extends Customer {
 		System.out.println("-- Preview Catalogue & Order: Press 3");
 		System.out.println();
 		System.out.println("--> Choice: ");
-		// Gather user's choice
+		//Gather user's choice
 		Scanner input = new Scanner(System.in);
 		int choice = input.nextInt();
 		double totalcost = 0;
 		int count = 0;
 		Shop shop = new Shop();
 		Order order = new Order();
-		// Flow based on user's choice
+		//Flow based on user's choice
 		while(choice != 0) {
 			if(choice == 1) {
 				order.printOrder();
@@ -107,7 +106,7 @@ public class RegisteredCustomer extends Customer {
 				String line = input.next();
 				if (line.length() > 0){
 					shop.filterAndPrintShops(line);
-				}else {
+				} else {
 					shop.printAllShops();
 				}
 				getMenu();
@@ -153,7 +152,7 @@ public class RegisteredCustomer extends Customer {
 							amount = input.nextInt();
 						}
 
-					}else {
+					} else {
 						while (shop.searchById(id).productIdExists(productid) != true){
 							System.out.println("-- Id doesn't exist! ");
 							System.out.println("-- Please provide us with a valid id of product: ");
@@ -215,7 +214,7 @@ public class RegisteredCustomer extends Customer {
 		}
 	}
 
-	// check if user is registered
+	/* check if user is registered */
 	public static RegisteredCustomer logIn(String email, String password) {
 		RegisteredCustomer customerFound = null;
 		for(int i = 0; i < registeredCustomer.size(); i++) {
@@ -227,8 +226,8 @@ public class RegisteredCustomer extends Customer {
 		return customerFound;
 	}
 
-	// bring user's name, pointing at the specific
-	// credentials combination inserted
+	/* bring user's name, pointing at the specific
+	   credentials combination inserted */
 	public static String welcome(String email, String password) {
 		String customerName = null;
 		for(int i = 0; i < registeredCustomer.size(); i++) {
@@ -245,4 +244,4 @@ public class RegisteredCustomer extends Customer {
 		return super.toString() + "ID: " + getRegCustomerId() + "\n" + "Email: " +
 				getEmail() + "\n" + "Password: " + getPassword();
 	}
-}
+} //End of class

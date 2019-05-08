@@ -7,6 +7,7 @@ import java.util.Date;
 /**
  * This class models the ordering process
  * made from a customer
+ * 
  * @author gkodosis
  * @author kasthanos
  *
@@ -22,9 +23,6 @@ public class Order {
 	private static ArrayList<Order> ord = new ArrayList<Order>();
 	private double totalOrderCost; //order's cost
 	private String orderStamp; //order's date
-
-	// gain access to non-static
-	public Order() {}
 
 	/**
 	* Full constructor
@@ -53,6 +51,14 @@ public class Order {
 		setOrderId(count++);
 		setOrderStamp(orderStamp);
 		ord.add(this);
+	}
+	
+	/**
+	 * Default constructor
+	 * 
+	 */
+	public Order() {
+		
 	}
 
 	public void setOrderId(int orderId) {
@@ -120,4 +126,4 @@ public class Order {
 			}
 		}
 	}
-}
+} //End of class

@@ -1,11 +1,12 @@
 package Ergasia2019;
+
 import java.util.ArrayList;
 
 /**
- *
  * This class references to every shop hosted in
  * our platform, including their characteristics
  * and their unique products
+ * 
  * @author gkodosis
  * @author kasthanos
  *
@@ -17,13 +18,9 @@ public class Shop {
 	private String brand; //shop's brand
 	private String address; //shop's address
 	private String shopPhoneNumber; //shop's phone
-	ArrayList<Product> inhouseProducts  = new ArrayList<Product>(); //arraylist to store the Products
-	static ArrayList<Shop> shops = new ArrayList<Shop>(); //arraylist to store the Shops
+	ArrayList<Product> inhouseProducts  = new ArrayList<Product>(); //array list to store the Products
+	static ArrayList<Shop> shops = new ArrayList<Shop>(); //array list to store the Shops
 
-	// create default constructor for non-static access
-	public Shop() {
-
-	}
 	/**
 	* Full constructor
 	*
@@ -36,7 +33,6 @@ public class Shop {
 	* @param inhouseProducts
 	*        Shop's products.
 	*/
-
 	public Shop(String brand, String address, String shopPhoneNumber,
 			ArrayList<Product> inhouseProducts) {
 
@@ -45,7 +41,15 @@ public class Shop {
 		this.setShopPhoneNumber(shopPhoneNumber);
 		this.inhouseProducts = inhouseProducts;
 		setShopId(count++);
-		shops.add(this); //add object to the arraylist
+		shops.add(this); //add object to the array list
+	}
+	
+	/**
+	* Default constructor
+	*
+	*/
+	public Shop() {
+
 	}
 
 	public void setShopId(int shopId) {
@@ -80,8 +84,8 @@ public class Shop {
 		return shopPhoneNumber;
 	}
 
-	// method to check existence of product in shop
-	// product's list
+	/* method to check existence of product in shop
+	   product's list */
 	public boolean productIdExists(int idCheck) {
 		boolean existence = false;
 		for(int i = 0; i < inhouseProducts.size(); i++) {
@@ -92,12 +96,12 @@ public class Shop {
 		return existence;
 	}
 
-	// print product's name - description
+	/* print product's name - description */
 	public String printProductName(int idCheck) {
 		return inhouseProducts.get(idCheck).getProductName();
 	}
 
-	// print product's price
+	/* print product's price */
 	public double printProductPrice(int idCheck) {
 		return inhouseProducts.get(idCheck).getPrice();
 	}
@@ -112,7 +116,7 @@ public class Shop {
 		return name;
 	}
 
-	// print product's price
+	/* print product's price */
 	public double searchProductPrice(int idCheck) {
 		double price = 0;
 		for(int i = 0; i < inhouseProducts.size(); i++) {
@@ -123,7 +127,7 @@ public class Shop {
 		return price;
 	}
 
-	// print list of products (check the per shopId)
+	/* print list of products (check the per shopId) */
 	public void printCatalogue() {
 		for(int i = 0; i < inhouseProducts.size(); i++) {
 			System.out.println( "Id: " + inhouseProducts.get(i).getProductId() + " Name: " +
@@ -131,7 +135,7 @@ public class Shop {
 		}
 	}
 
-	// search for shop's existence by id
+	/* search for shop's existence by id */
 	public static Shop searchById(int idCheck) {
 		Shop existence = null;
 		for(int i = 0; i < shops.size(); i++) {
@@ -142,14 +146,14 @@ public class Shop {
 		return existence;
 	}
 
-	// print all shops
+	/* print all shops */
 	public void printAllShops() {
 		for(int i = 0; i < shops.size(); i++)
 			System.out.println(shops.get(i).toString());
 	}
 
-	// prints shops containing the nameCheck value
-	// at their brand name - description
+	/* prints shops containing the nameCheck value
+	   at their brand name - description */
 	public void filterAndPrintShops(String nameCheck) {
 		for(int i = 0; i < shops.size(); i++) {
 			if(shops.get(i).getBrand().contains(nameCheck)) {
@@ -158,9 +162,8 @@ public class Shop {
 		}
 	}
 
-	// ask for phone Skiada
 	public String toString() {
 		return "Id: " + getShopId() + " Brand: " + getBrand() + " Address: "
 				+ getShopAddress() + " Phone: " + getShopPhoneNumber();
 	}
-}
+} //End of class

@@ -12,18 +12,18 @@ import java.util.ArrayList;
  */
 public abstract class Customer {
 
-	private String fullname; //customer's fullname
-	private String phoneNumber; //customer's phoneNumber
+	private String fullname; //customer's full name
+	private String phoneNumber; //customer's phone number
 	private String address; //customer's address
-	ArrayList<Customer> customer = new ArrayList<Customer>(); //arraylist to store the Customers
+	ArrayList<Customer> customer = new ArrayList<Customer>(); //array list to store the Customers
 
 	/**
 	* Full constructor
 	*
 	* @param fullname
-	*        Customer's fullname.
+	*        Customer's full name.
 	* @param phoneNumber
-	*        Customer's phoneNumber.
+	*        Customer's phone number.
 	* @param address
 	*        Customer's address.
 	*/
@@ -32,14 +32,13 @@ public abstract class Customer {
 		this.fullname = fullname;
 		this.phoneNumber = phoneNumber;
 		this.address = address;
-		customer.add(this); //add object to the arraylist
+		customer.add(this); //add object to the array list
 	}
 
 	/**
 	* Default constructor
 	*
 	*/
-
 	public Customer(){
 
 	}
@@ -68,7 +67,7 @@ public abstract class Customer {
 		return address;
 	}
 
-	// get menu based on customer's type
+	/* get menu based on customer's type */
 	public abstract void getMenu();
 
 	@Override
@@ -83,4 +82,4 @@ public abstract class Customer {
 		return pdata;
 	}
 
-}// End of class
+} //End of class

@@ -20,7 +20,6 @@ public class Product {
 	 * @param price
 	 *        Product's price.
 	*/
-
 	public Product(String productName, double price) {
 		this.productName = productName;
 		this.price = price;
@@ -31,7 +30,6 @@ public class Product {
 	* Default constructor
 	*
 	*/
-
 	public Product(){
 
 	}
@@ -63,4 +61,4 @@ public class Product {
 	public String toString() {
 		return "Product's Name: " + productName + "Price: " + price;
 	}
-}
+} //End of class
