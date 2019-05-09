@@ -1,6 +1,7 @@
 package Ergasia2019;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -12,6 +13,8 @@ import java.util.Scanner;
  *
  */
 public class Main {
+
+	private static boolean continueLoop; //exception flow handler
 
 	/* load objects to test app's functionality */
 	public static void loadObjects() {
@@ -49,6 +52,10 @@ public class Main {
 		System.out.println("--> Choice: ");
 	}
 
+	public static int inputCheck(int choice) {
+		return choice / 10;
+	}
+
 	public static void main(String[] args) {
 		//create global objects to access abstract methods
 		//Registered Customer
@@ -73,55 +80,66 @@ public class Main {
 		loadObjects();
 		//gather user's choices
 		Scanner input = new Scanner(System.in);
-		int choice = 1;
+		int choice = 5;
 
 		while(choice != 0) {
-			mainMenu();
-			choice = input.nextInt();
 
-			if(choice == 1) {
-				System.out.println("Please provide us with the following info: ");
-				System.out.println("Fullname: ");
-				String fullname = input.next();
-				System.out.println("Phone Number: ");
-				String phoneNumber = input.next();
-				System.out.println("Address: ");
-				String address = input.next();
-				System.out.println("Email: ");
-				String email = input.next();
-				System.out.println("Password: ");
-				String password = input.next();
-
-				new RegisteredCustomer( fullname, phoneNumber,
-						address, email, password);
-				mainMenu();
-				choice = input.nextInt();
-
-			} else if(choice == 2) {
-				System.out.println("Please provide us with the following info: ");
-				System.out.println("Email: ");
-				String email = input.next();
-				System.out.println("Password: ");
-				String password = input.next();
-
-				if(RegisteredCustomer.logIn(email, password) != null) {
-					System.out.println(RegisteredCustomer.welcome(email, password) +
-							" You are now loged-in to our e-shop! ");
-					r0.getMenu();
-					choice = input.nextInt();
-				} else {
-					System.out.println("Wrong credentials, please try again: ");
+			do {
+				try {
 					mainMenu();
 					choice = input.nextInt();
-				}
+					
+					if(choice == 1) {
+						System.out.println("Please provide us with the following info: ");
+						System.out.println("Fullname: ");
+						String fullname = input.next();
+						System.out.println("Phone Number: ");
+						String phoneNumber = input.next();
+						System.out.println("Address: ");
+						String address = input.next();
+						System.out.println("Email: ");
+						String email = input.next();
+						System.out.println("Password: ");
+						String password = input.next();
 
-			} else if(choice == 3) {
-				v0.getMenu();
-				choice = input.nextInt();
-			} else {
-				System.out.println("Wrong choice, please press enter and try again: ");
-				choice = input.nextInt();
-			}
+						new RegisteredCustomer( fullname, phoneNumber,
+								address, email, password);
+						mainMenu();
+						choice = input.nextInt();
+
+					} else if(choice == 2) {
+						System.out.println("Please provide us with the following info: ");
+						System.out.println("Email: ");
+						String email = input.next();
+						System.out.println("Password: ");
+						String password = input.next();
+
+						if(RegisteredCustomer.logIn(email, password) != null) {
+							System.out.println(RegisteredCustomer.welcome(email, password) +
+									" You are now loged-in to our e-shop! ");
+							r0.getMenu();
+							choice = input.nextInt();
+						} else {
+							System.out.println("Wrong credentials, please try again: ");
+							mainMenu();
+							choice = input.nextInt();
+						}
+
+					} else if(choice == 3) {
+						v0.getMenu();
+						choice = input.nextInt();
+						
+					} else {
+						throw new InputMismatchException();
+					}
+
+				} catch(InputMismatchException e) {
+					System.out.println("Wrong choice mate, please try again: ");
+					System.out.println();
+					input.nextLine();
+				}
+			} while(choice < 0);
+			
 		}
 	}
 
