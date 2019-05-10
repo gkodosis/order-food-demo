@@ -1,6 +1,7 @@
 package Ergasia2019;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -18,6 +19,7 @@ public class RegisteredCustomer extends Customer {
 	private int regCustomerId; //registered customer's id
 	private String email; //registered customer's email
 	private String password; //registered customer's password
+	private boolean continueLoop;
 	//array list to store the Registered Customers
 	static ArrayList<RegisteredCustomer> registeredCustomer = new ArrayList<RegisteredCustomer>();
 
@@ -34,7 +36,7 @@ public class RegisteredCustomer extends Customer {
 	 *        RegisteredCustomer's email.
 	 * @param password
 	 *        RegisteredCustomer's password.
-	*/
+	 */
 	public RegisteredCustomer(String fullname, String phoneNumber,
 			String address, String email, String password) {
 
@@ -46,9 +48,9 @@ public class RegisteredCustomer extends Customer {
 	}
 
 	/**
-	* Default constructor
-	*
-	*/
+	 * Default constructor
+	 *
+	 */
 	public RegisteredCustomer(){
 
 	}
@@ -95,122 +97,159 @@ public class RegisteredCustomer extends Customer {
 		Order order = new Order();
 		//Flow based on user's choice
 		while(choice != 0) {
-			if(choice == 1) {
-				order.printOrder();
-				getMenu();
 
-			} else if(choice == 2) {
-				System.out.println("-- Please provide us with the part of brand: ");
-				System.out.println();
-				System.out.println("--> Choice: ");
-				String line = input.next();
-				if (line.length() > 0){
-					shop.filterAndPrintShops(line);
-				} else {
-					shop.printAllShops();
-				}
-				getMenu();
+			do {
+				try {
 
-			} else if(choice == 3) {
-				System.out.println("-- Please provide us with the id of shop: ");
-				System.out.println();
-				String s = input.next();
-				int id = Integer.parseInt(s);
+					if(choice == 1) {
+						order.printOrder();
+						getMenu();
 
-				if (s.length() > 0) {
-					while (shop.searchById(id) == null) {
-						System.out.println("-- Id doesn't exist! ");
-						System.out.println("-- Please provide us with a valid id of shop: ");
+					} else if(choice == 2) {
+						System.out.println("-- Please provide us with the part of brand: ");
 						System.out.println();
-						s = input.next();
-						id = Integer.parseInt(s);
-						if (s.length() == 0) {
-							getMenu();
+						System.out.println("--> Choice: ");
+						String line = input.next();
+						if (line.length() > 0){
+							shop.filterAndPrintShops(line);
+						} else {
+							shop.printAllShops();
 						}
-					}
-				} else {
-					getMenu();
-				}
-				shop.searchById(id).printCatalogue();
-				ArrayList<Integer[][]> idQuantities = new ArrayList<Integer[][]>();
+						getMenu();
 
-				System.out.println("-- Please provide us with the id of product: ");
-				System.out.println();
-				String s2 = input.next().trim();
-				int productid = Integer.parseInt(s2);
-				int amount;
-				while (!s2.isEmpty()) { //PROBLEM DON'TS ACCEPT ENTER KEY
-
-					if (shop.searchById(id).productIdExists(productid) == true) {
-						System.out.println("-- Please provide us with the amount of product: ");
+					} else if(choice == 3) {
+						System.out.println("-- Please provide us with the id of shop: ");
 						System.out.println();
-						amount = input.nextInt();
-						while ((amount < 1) || (amount > 20)) {
-							System.out.println("-- Amount out of bounds! ");
-							System.out.println("-- Please provide us with a valid amount of product: ");
-							System.out.println();
-							amount = input.nextInt();
-						}
 
-					} else {
-						while (shop.searchById(id).productIdExists(productid) != true){
-							System.out.println("-- Id doesn't exist! ");
-							System.out.println("-- Please provide us with a valid id of product: ");
-							System.out.println();
-							s2 = input.next();
-							productid = Integer.parseInt(s2);
-							if (s2.length() == 0) {
+						do {
+							try {
+								String s = input.next();
+								int id = Integer.parseInt(s);
+								continueLoop = false;
+
+								do {
+									try {
+										System.out.println("-- Id doesn't exist! ");
+										System.out.println("-- Please provide us with a valid id of shop: ");
+										System.out.println();
+										input.nextLine();
+										s = input.nextLine();
+										id = Integer.parseInt(s);
+
+									} catch(NumberFormatException e) {
+										getMenu();
+
+									} catch(NullPointerException e) {
+										getMenu();
+									}
+
+								} while(shop.searchById(id) == null);
+
+								shop.searchById(id).printCatalogue();
+								ArrayList<Integer[][]> idQuantities = new ArrayList<Integer[][]>();
+
+								System.out.println("-- Please provide us with the id of product: ");
+								System.out.println();
+								String s2 = input.next().trim();
+								int productid = Integer.parseInt(s2);
+								int amount;
+
+								if (shop.searchById(id).productIdExists(productid) == true) {
+									System.out.println("-- Please provide us with the amount of product: ");
+									System.out.println();
+									amount = input.nextInt();
+									while ((amount < 1) || (amount > 20)) {
+										System.out.println("-- Amount out of bounds! ");
+										System.out.println("-- Please provide us with a valid amount of product: ");
+										System.out.println();
+										amount = input.nextInt();
+									}
+
+								} else {
+
+									do {
+										try {
+											System.out.println("-- Id doesn't exist! ");
+											System.out.println("-- Please provide us with a valid id of product: ");
+											System.out.println();
+											input.nextLine();
+											s2 = input.nextLine();
+											productid = Integer.parseInt(s2);
+										} catch(InputMismatchException e) {
+											getMenu();
+										} catch(NullPointerException e) {
+											getMenu();
+										}
+									} while(shop.searchById(id).productIdExists(productid) != true);
+
+									System.out.println("-- Please provide us with the amount of product: ");
+									System.out.println();
+									amount = input.nextInt();
+									while ((amount < 1) || (amount > 20)) {
+										System.out.println("-- Amount out of bounds! ");
+										System.out.println("-- Please provide us with a valid amount of product: ");
+										System.out.println();
+										amount = input.nextInt();
+									}
+								}
+								Integer[][] order0 = {{productid, amount}};
+								idQuantities.add(order0);
+								count = count + 1;
+
+								if ((shop.searchById(id) != null) && (shop.searchById(id).productIdExists(productid) == true)) {
+									totalcost = totalcost + shop.searchById(id).searchProductPrice(productid) * amount;
+								}
+								System.out.println("-- Please provide us another id of product: ");
+								System.out.println();
+								s2 = input.next();
+								productid = Integer.parseInt(s2);
+								s2 ="";
+
+								String pdata = "----------------------" + "\n"
+										+ "Your Order:" + "\n"
+										+ "----------------------" + "\n"
+										+ "Brand: " + shop.searchById(id).getBrand() + "\n"
+										+ "----------------------" + "\n";
+								System.out.println(pdata);
+								for(int i = 0; i < count; i ++) {
+
+									System.out.println("Product Name: " + shop.searchById(id).searchProductName(idQuantities.get(i)[i][0]) + " ~~ Amount: " + idQuantities.get(i)[i][1]+ "\n" + "----------------------" + "\n");
+								}
+								System.out.println("Order's Total Cost : " + totalcost );
+								System.out.println();
+								System.out.println("-- Do you want to save your order? ");
+								System.out.println("-- Type N if you want ");
+								System.out.println();
+								char save = input.next().trim().charAt(0);
+								if (save == 'N') {
+									Order or = new Order(this, shop.searchById(id), idQuantities, totalcost,"yyyy/MM/dd HH:mm:ss");
+									System.out.println(or.toString());
+								} else {
+									getMenu();
+								}
+								getMenu();
+
+							} catch(NumberFormatException e) {
+								System.out.println("Sorry something went wrong, please try again!");
+								System.out.println();
+								getMenu();
+
+							} catch(NullPointerException e) {
 								getMenu();
 							}
-						}
-						System.out.println("-- Please provide us with the amount of product: ");
-						System.out.println();
-						amount = input.nextInt();
-						while ((amount < 1) || (amount > 20)) {
-							System.out.println("-- Amount out of bounds! ");
-							System.out.println("-- Please provide us with a valid amount of product: ");
-							System.out.println();
-							amount = input.nextInt();
-						}
-					}
-					Integer[][] order0 = {{productid, amount}};
-					idQuantities.add(order0);
-					count = count + 1;
 
-					if ((shop.searchById(id) != null) && (shop.searchById(id).productIdExists(productid) == true)) {
-						totalcost = totalcost + shop.searchById(id).searchProductPrice(productid) * amount;
+						} while(continueLoop);
+
+					} else {
+						throw new InputMismatchException();
 					}
-					System.out.println("-- Please provide us another id of product: ");
+
+				} catch(InputMismatchException e) {
+					System.out.println("Wrong choice, please try again: ");
 					System.out.println();
-					s2 = input.next();
-					productid = Integer.parseInt(s2);
-					s2 ="";
-				} //UNTIL HERE IT'S FINE
-				String pdata = "----------------------" + "\n"
-								+ "Your Order:" + "\n"
-								+ "----------------------" + "\n"
-								+ "Brand: " + shop.searchById(id).getBrand() + "\n"
-								+ "----------------------" + "\n";
-				System.out.println(pdata);
-				for(int i = 0; i < count; i ++) {
-
-					System.out.println("Product Name: " + shop.searchById(id).searchProductName(idQuantities.get(i)[i][0]) + " ~~ Amount: " + idQuantities.get(i)[i][1]+ "\n" + "----------------------" + "\n");
+					input.nextLine();
 				}
-				System.out.println("Order's Total Cost : " + totalcost );
-				System.out.println();
-				System.out.println("-- Do you want to save your order? ");
-				System.out.println("-- Type N if you want ");
-				System.out.println();
-				char save = input.next().trim().charAt(0);
-				if (save == 'N') {
-					Order or = new Order(this, shop.searchById(id), idQuantities, totalcost,"yyyy/MM/dd HH:mm:ss");
-					System.out.println(or.toString());
-				} else {
-					getMenu();
-				}
-			 getMenu();
-
-			}
+			} while(choice < 0);
 		}
 	}
 

@@ -14,8 +14,6 @@ import java.util.Scanner;
  */
 public class Main {
 
-	private static boolean continueLoop; //exception flow handler
-
 	/* load objects to test app's functionality */
 	public static void loadObjects() {
 		//Registered Customer
@@ -104,8 +102,6 @@ public class Main {
 
 						new RegisteredCustomer( fullname, phoneNumber,
 								address, email, password);
-						mainMenu();
-						choice = input.nextInt();
 
 					} else if(choice == 2) {
 						System.out.println("Please provide us with the following info: ");
@@ -121,8 +117,7 @@ public class Main {
 							choice = input.nextInt();
 						} else {
 							System.out.println("Wrong credentials, please try again: ");
-							mainMenu();
-							choice = input.nextInt();
+							System.out.println();
 						}
 
 					} else if(choice == 3) {
@@ -134,7 +129,7 @@ public class Main {
 					}
 
 				} catch(InputMismatchException e) {
-					System.out.println("Wrong choice mate, please try again: ");
+					System.out.println("Wrong choice, please try again: ");
 					System.out.println();
 					input.nextLine();
 				}
