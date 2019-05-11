@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * This class models the ordering process
  * made from a customer
- * 
+ *
  * @author gkodosis
  * @author kasthanos
  *
@@ -52,13 +52,13 @@ public class Order {
 		setOrderStamp(orderStamp);
 		ord.add(this);
 	}
-	
+
 	/**
 	 * Default constructor
-	 * 
+	 *
 	 */
 	public Order() {
-		
+
 	}
 
 	public void setOrderId(int orderId) {
@@ -109,7 +109,7 @@ public class Order {
 				getCustomerOrder().getCustomerName() + "\n" + " Shop's Brand Name: " +
 				getShopOrder().getBrand()+  "\n" + " Order's List: "+  "\n" ;
 		for(int i = 0; i < orders.size(); i++) {
-				print = print + " -- Product Id: " + orders.get(i)[i][0] + "\n" + " -- Ammount: x" + orders.get(i)[i][1] + "\n";
+				print = print + " -- Product Id: " + orders.get(i)[0][0] + "\n" + " -- Ammount: x" + orders.get(i)[0][1] + "\n";
 		}
 				print = print + "-- Order's Total Cost: " + getTotalOrderCost() + "\n";
 				return print;
