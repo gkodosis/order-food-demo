@@ -18,15 +18,15 @@ public abstract class Customer {
 	ArrayList<Customer> customer = new ArrayList<Customer>(); //array list to store the Customers
 
 	/**
-	* Full constructor
-	*
-	* @param fullname
-	*        Customer's full name.
-	* @param phoneNumber
-	*        Customer's phone number.
-	* @param address
-	*        Customer's address.
-	*/
+	 * Full constructor
+	 *
+	 * @param fullname
+	 *        Customer's full name.
+	 * @param phoneNumber
+	 *        Customer's phone number.
+	 * @param address
+	 *        Customer's address.
+	 */
 
 	public Customer(String fullname, String phoneNumber, String address) {
 		this.fullname = fullname;
@@ -36,9 +36,9 @@ public abstract class Customer {
 	}
 
 	/**
-	* Default constructor
-	*
-	*/
+	 * Default constructor
+	 *
+	 */
 	public Customer(){
 
 	}

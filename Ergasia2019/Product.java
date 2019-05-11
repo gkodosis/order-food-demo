@@ -19,7 +19,7 @@ public class Product {
 	 *        Product's name.
 	 * @param price
 	 *        Product's price.
-	*/
+	 */
 	public Product(String productName, double price) {
 		this.productName = productName;
 		this.price = price;
@@ -27,9 +27,9 @@ public class Product {
 	}
 
 	/**
-	* Default constructor
-	*
-	*/
+	 * Default constructor
+	 *
+	 */
 	public Product(){
 
 	}

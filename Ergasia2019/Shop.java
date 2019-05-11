@@ -22,17 +22,17 @@ public class Shop {
 	static ArrayList<Shop> shops = new ArrayList<Shop>(); //array list to store the Shops
 
 	/**
-	* Full constructor
-	*
-	* @param brand
-	*        Shop's brand.
-	* @param address
-	*        Shop's address.
-	* @param shopPhoneNumber
-	*        Shop's phone.
-	* @param inhouseProducts
-	*        Shop's products.
-	*/
+	 * Full constructor
+	 *
+	 * @param brand
+	 *        Shop's brand.
+	 * @param address
+	 *        Shop's address.
+	 * @param shopPhoneNumber
+	 *        Shop's phone.
+	 * @param inhouseProducts
+	 *        Shop's products.
+	 */
 	public Shop(String brand, String address, String shopPhoneNumber,
 			ArrayList<Product> inhouseProducts) {
 
@@ -43,11 +43,11 @@ public class Shop {
 		setShopId(count++);
 		shops.add(this); //add object to the array list
 	}
-	
+
 	/**
-	* Default constructor
-	*
-	*/
+	 * Default constructor
+	 *
+	 */
 	public Shop() {
 
 	}
@@ -107,7 +107,7 @@ public class Shop {
 	}
 
 	public String searchProductName(int idCheck) {
-		 String name = null;
+		String name = null;
 		for(int i = 0; i < inhouseProducts.size(); i++) {
 			if (idCheck == inhouseProducts.get(i).getProductId()){
 				name = inhouseProducts.get(i).getProductName();

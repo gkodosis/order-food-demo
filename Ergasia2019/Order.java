@@ -25,21 +25,21 @@ public class Order {
 	private String orderStamp; //order's date
 
 	/**
-	* Full constructor
-	*
-	* @param customer
-	*        Customer's object.
-	* @param shop
-	*        Shop's object.
-	* @param shopPhoneNumber
-	*        Shop's phone.
-	* @param orders
-	*        Order's orders.
-	* @param totalOrderCost
-	*        Order's cost.
-	* @param orderStamp
-	*        Order's date.
-	*/
+	 * Full constructor
+	 *
+	 * @param customer
+	 *        Customer's object.
+	 * @param shop
+	 *        Shop's object.
+	 * @param shopPhoneNumber
+	 *        Shop's phone.
+	 * @param orders
+	 *        Order's orders.
+	 * @param totalOrderCost
+	 *        Order's cost.
+	 * @param orderStamp
+	 *        Order's date.
+	 */
 
 	public Order(Customer customer, Shop shop, ArrayList<Integer[][]> orders,
 			double totalOrderCost, String orderStamp) {
@@ -109,10 +109,10 @@ public class Order {
 				getCustomerOrder().getCustomerName() + "\n" + " Shop's Brand Name: " +
 				getShopOrder().getBrand()+  "\n" + " Order's List: "+  "\n" ;
 		for(int i = 0; i < orders.size(); i++) {
-				print = print + " -- Product Id: " + orders.get(i)[0][0] + "\n" + " -- Ammount: x" + orders.get(i)[0][1] + "\n";
+			print = print + " -- Product Id: " + orders.get(i)[0][0] + "\n" + " -- Ammount: x" + orders.get(i)[0][1] + "\n";
 		}
-				print = print + "-- Order's Total Cost: " + getTotalOrderCost() + "\n";
-				return print;
+		print = print + "-- Order's Total Cost: " + getTotalOrderCost() + "\n";
+		return print;
 	}
 
 	public static void printOrder() {
